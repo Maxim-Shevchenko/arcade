@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-This is second exam file
-=======
-Hello, my friend
->>>>>>> 9b46de7bdcbd61f5a299848739138ba240e56f28
+This is my test file for gitHub
