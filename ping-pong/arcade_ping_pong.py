@@ -3,7 +3,7 @@ import random
 
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Шаблон"
+SCREEN_TITLE = "Ping-pong by Max Shevchenko"
 
 class OurGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -45,7 +45,7 @@ class OurGame(arcade.Window):
             self.ball.bottom = self.bar.top
             self.ball.change_y = -self.ball.change_y
             self.score += 1
-            print(self.score)
+            #print(self.score)
         if self.ball.bottom < 0:
             self.attempts -= 1
             self.ball.center_y = 500
