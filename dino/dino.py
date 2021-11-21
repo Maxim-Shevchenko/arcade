@@ -17,6 +17,8 @@ class MyGame(arcade.Window):
         self.dino.textures.append(arcade.load_texture("dino2.png"))
         self.dino.textures.append(arcade.load_texture("dino3.png"))
         self.cactus = Cactus("cactus2.png",0.5)
+        self.score = 0
+
 
 
 
@@ -29,6 +31,8 @@ class MyGame(arcade.Window):
         self.cactus.change_x = -15
 
 
+
+
     # отрисовка
     def on_draw(self):
         arcade.start_render()
@@ -36,10 +40,16 @@ class MyGame(arcade.Window):
         arcade.draw_texture_rectangle(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         self.dino.draw()
         self.cactus.draw()
+        score_text = f"Счет: {self.score}"
+        arcade.draw_text(score_text, 350, 500, arcade.color.BLACK, 30)
+        if arcade.check_for_collision(self.dino, self.cactus):
+            game_over = f"GAME OVER"
+            arcade.draw_text(game_over, 270, 400, arcade.color.WHITE, 50)
 
 
 
-    # игровая логика
+
+        # игровая логика
     def update(self, delta_time):
         self.dino.update_animation()
         self.dino.update()
@@ -47,6 +57,10 @@ class MyGame(arcade.Window):
         if arcade.check_for_collision(self.dino, self.cactus):
             self.cactus.stop()
             self.dino.stop()
+
+        if self.cactus.center_x >= 800:
+            self.score +=1
+
 
     # нажать на клавишу
     def on_key_press(self, key, modifiers):
@@ -73,6 +87,8 @@ class Cactus(arcade.Sprite):
         self.center_x += self.change_x
         if self.center_x <=0:
             self.center_x = SCREEN_WIDTH
+
+
 
 window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 window.setup()
