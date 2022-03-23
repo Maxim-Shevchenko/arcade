@@ -16,7 +16,11 @@ class MyGame(arcade.Window):
         self.dino.textures.append(arcade.load_texture("dino1.png"))
         self.dino.textures.append(arcade.load_texture("dino2.png"))
         self.dino.textures.append(arcade.load_texture("dino3.png"))
-        self.cactus = Cactus("cactus2.png",0.5)
+        #self.cactus = Cactus("cactus2.png",0.5)
+        self.cactus= Cactus(0.7)
+        self.cactus.textures = []
+        self.cactus.textures.append(arcade.load_texture("cactus2.png"))
+        self.cactus.textures.append(arcade.load_texture("cactus3.png"))
         self.score = 0
 
 
@@ -53,7 +57,10 @@ class MyGame(arcade.Window):
     def update(self, delta_time):
         self.dino.update_animation()
         self.dino.update()
+
+        self.cactus.update_animation()
         self.cactus.update()
+
         if arcade.check_for_collision(self.dino, self.cactus):
             self.cactus.stop()
             self.dino.stop()
@@ -82,7 +89,7 @@ class Dino(arcade.AnimatedTimeSprite):
             self.center_y = 200
             self.jump = False
 
-class Cactus(arcade.Sprite):
+class Cactus(arcade.AnimatedTimeSprite):
     def update(self):
         self.center_x += self.change_x
         if self.center_x <=0:

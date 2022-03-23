@@ -35,19 +35,10 @@ class MyGame(arcade.Window):
         score_text = f"Счет: {self.score}"
         arcade.draw_text(score_text, 100, 560, arcade.color.RED, 20)
 
-
-
-        if 7<=self.score<=15:
-            self.wall.center_y -= self.wall.change_y+1
-            turbo_text = "Включен режим - Беги или умри"
-            arcade.draw_text(turbo_text, 300, 560, arcade.color.RED, 15)
-
         if self.wall.center_y == 0:
             self.score += 1
 
-
-
-        if self.score == 15:
+        if self.score == 2:
 
             win_text = "Ты победил, снимаю шляпу"
             arcade.draw_text(win_text, 200, 300, arcade.color.BLUE, 25)
